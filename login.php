@@ -23,7 +23,6 @@ if (array_key_exists('username', $_REQUEST) && array_key_exists('password', $_RE
 		die("<br />Invalid password.<br /> ");
 	}
 	$_SESSION['username'] = $username;
-	$_SESSION['password'] = $password;
 	header('Location: index.php');
 } else {
 	echo '<html>'
