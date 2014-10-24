@@ -1,5 +1,5 @@
 <?php
-session_start();
+require 'dbinterface.php';
 if (array_key_exists('username', $_REQUEST) && array_key_exists('password', $_REQUEST)) {
 	$username = $_REQUEST['username'];
 	$password = $_REQUEST['password'];
@@ -23,6 +23,14 @@ if (array_key_exists('username', $_REQUEST) && array_key_exists('password', $_RE
 		die("<br />Invalid password.<br /> ");
 	}
 	$_SESSION['username'] = $username;
+ // To be removed after demo
+	$categories = array();
+	$_SESSION['id'] = 0; // To be removed after demo
+	addCategory($categories, 'Abogados de inmigración', 'Immigration lawyers');
+	addResource($categories[0], 'Ada Pozo', '770-445-9000', '');
+	addResource($categories[0], 'Richard Maney', '770-777-9000', 'Works with student visas');
+	addCategory($categories, 'Vales de comida', 'Food stamps');
+	$_SESSION['categories'] = $categories;
 	header('Location: index.php');
 } else {
 	echo '<html>'
