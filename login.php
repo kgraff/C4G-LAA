@@ -1,49 +1,33 @@
 <?php
-require 'dbinterface.php';
+
+require 'dbconnect.php';
+session_start();
+
 if (array_key_exists('username', $_REQUEST) && array_key_exists('password', $_REQUEST)) {
+	
 	$username = $_REQUEST['username'];
 	$password = $_REQUEST['password'];
-	if (! (mysql_connect('localhost','root',''))) {
-		die(mysql_error());
-	}
-	if (! (mysql_select_db('users'))) {
-		die(mysql_error());
-	}
-	$result = mysql_query('SELECT * FROM users WHERE username="'.$username.'"');
-	/* Still need to test for injection attacks! */
 	
-	$row = mysql_fetch_array($result);
-	$user = $row['username'];
-	if($username != $user) {
-		die("<br />Invalid username.<br /> ");
-	}
-	$hash = $row['password'];
-	/* Fix hash to be SHA-256; this will require changing database column width from 60 to 256 */
-	if (! (password_verify($password, $hash))) {
-		die("<br />Invalid password.<br /> ");
-	}
+	attemptConnectDatabase($username, $password);
+	
 	$_SESSION['username'] = $username;
- // To be removed after demo
-	$categories = array();
-	$_SESSION['id'] = 0; // To be removed after demo
-	addCategory($categories, 'Abogados de inmigración', 'Immigration lawyers');
-	addResource($categories[0], 'Ada Pozo', '770-445-9000', '');
-	addResource($categories[0], 'Richard Maney', '770-777-9000', 'Works with student visas');
-	addCategory($categories, 'Vales de comida', 'Food stamps');
-	$_SESSION['categories'] = $categories;
+	$_SESSION['password'] = $password;
 	header('Location: index.php');
-} else {
-	echo '<html>'
-		.'<title>'
-			.'Hello'
-		.'</title>'
-		.'<body>'
-			.'<form action ="" method = "post">'
-				.'<p>User Name : <input type ="text" name = "username" size="20" maxlength="40"></p>'
-				.'<p>Password : <input type ="text" name = "password" size="40" maxlength="60"></p>'
-				.'<p><input type="submit" name="submit" value = "Submit"></p>'
-			.'</form>'
-		.'</body>'
-	.'</html>';
+	
 }
+
 ?>
+
+
+<html>
+<title> 'Hello' </title>'
+<body>
+
+<form action="" method="post">
+	<p>Nombre de usuario / Username : <input type="text" name="username" size="20" maxlength="40"></p>
+	<p>Password : <input type="text" name="password" size="40" maxlength="60"></p>
+	<p><input type="submit" name="submit" value="Enviar"></p>
+</form>
+
+</body>
+</html>
