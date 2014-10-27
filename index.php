@@ -1,6 +1,5 @@
 <?php
 require 'dbinterface.php';
-echo $username.'<br />';
 ?>
 
 <html>
