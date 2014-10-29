@@ -26,12 +26,20 @@
                 <h1>Create a new account</h1>
                 <br>
                     <form role="form" action="javascript:;" method="post" id="login-form" autocomplete="off">
-                        <h4>Enter new username</h4>
+                        <h4>First name</h4>
+                        <div class="form-group">
+                            <input type="name" name="fname" id="fname" class="form-control" placeholder="First">
+                        </div>
+                        <h4>Last name</h4>
+                        <div class="form-group">
+                            <input type="name" name="lname" id="lname" class="form-control" placeholder="Last">
+                        </div>
+                        <h4>Your email</h4>
                         <div class="form-group">
                             <label for="email" class="sr-only">Email</label>
                             <input type="email" name="email" id="email" class="form-control" placeholder="somebody@example.com">
                         </div>
-                        <h4>Enter the password</h4>
+                        <h4>Password</h4>
                         <div class="form-group">
                             <label for="key" class="sr-only">Password</label>
                             <input type="password" name="key" id="key" class="form-control" placeholder="Enter a password">
@@ -39,11 +47,20 @@
                         <h4>Re-enter the password</h4>
                         <div class="form-group">
                             <label for="key" class="sr-only">password2</label>
-                            <input type="password" name="key2" id="key" class="form-control" placeholder="Same password again" >
+                            <input type="password" name="key2" id="key2" class="form-control" placeholder="Same password again" >
                         </div>
-                        <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Create">
+                        <div>
+                            <h4>Are you an admin?</h4>
+                            <select name="admin" id="inputD" class="form-control" required="required">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                        </div>
+                        <br>
+                        <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Create" onclick="createUser()">
                     </form>
                     <hr>
+                    <h4 id = "same"></h4>
                 </div>
             </div> <!-- /.col-xs-12 -->
         </div> <!-- /.row -->
@@ -53,5 +70,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="ps.js"></script>
   </body>
 </html>
