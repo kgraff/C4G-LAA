@@ -24,14 +24,16 @@
 				<div class="form-wrap">
 					<h1>Add a Category</h1>
 					<br>
-					<h5 id = "m1" style="color: red;"></h5>
-					<form id="createCategoryForm" class="form-horizontal" role="form" onsubmit="event.preventDefault();createCategory();">
+					<h5 id = "m1" style="color: red;">
+					</h5>
+					<form id="createCategoryForm" class="form-horizontal" onsubmit="event.preventDefault();createCategory();">
 						<div class="form-group">
 
 							<label for="category" class="col-sm-2 control-label">Parent Category:</label>
 							<div class="col-sm-10">
 								<input type="text" name="category" id="category" class="form-control" list="categoryList">
-								<datalist id="categoryList"></datalist>
+								<datalist id="categoryList">
+								</datalist>
 							</div>
 
 							<hr>
@@ -44,7 +46,8 @@
 							<hr>
 							<label for="description" class="col-sm-2 control-label">Description:</label>
 							<div class="col-sm-10">
-								<textarea name="description" id="description" class="form-control"></textarea>
+								<textarea name="description" id="description" class="form-control">
+								</textarea>
 							</div>
 
 						</div>
