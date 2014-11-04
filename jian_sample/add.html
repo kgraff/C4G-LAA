@@ -18,7 +18,7 @@
     <![endif]-->
     <script language="JavaScript">
     function createResource() {
-    //re visit and finish when working on front end
+    	//re visit and finish when working on front end
         var resource= new Resource();
         var promise = resource.create();
     
@@ -50,7 +50,7 @@
 
         this.create = function() {
             return $.ajax({
-                url : "localhost/laarest/api/resource",
+                url : "http://localhost/laaRest/api/resource",
                 data : {
                     'categoryID' : this.categoryID,
                     'name' : this.name,
@@ -179,7 +179,7 @@
                     </div>
                     <hr>
                 </div>
-                <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Add Resource" onClick="createResource">
+                <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Add Resource" onClick="event.preventDefault();createResource();">
             </form>
         </div>
     </div> <!-- /.container -->
