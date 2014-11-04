@@ -2,12 +2,13 @@ var categories = {};
 
 $(document).ready(function() {
 	populateCategoryList();
-	console.log(categories);
+	//console.log(categories);
 });
 
 function populateCategoryList() {
 	// Retrieve all categories
-	var promise = Category.readAll();
+	var category = new Category(null, null, null, null);
+	var promise = category.readAll();
 	promise.success(function(data) {
 			console.log("attempt: " + data);
 			// iterate through each category returned and add it to the category list and
@@ -36,8 +37,7 @@ function createCategory() {
 		var description = $('#description').val();
 
 		var category = new Category(null, parentCategoryID, name, description);
-		
-		var promise = Category.create();
+		var promise = category.create();
 		var msg = null;
 
 		promise.success(function(data) {
@@ -66,18 +66,15 @@ function createCategory() {
 
 
 function validateCategory() {
-	console.log("validateCategory()");
 	// Check to ensure parent category is correct if one is chosen
 	// Get parent category	
 	var parentCategory = $('#category').val();
 	if(parentCategory != null && parentCategory != "" && categories[parentCategory] == undefined){
-		console.log("invalid parent category");
 		return (false, "invalid parent category");
 	}
 	
 	// Ensure the name is not empty
 	var categoryName = $('#name').val();
-	console.log(categoryName);
 	if(categoryName == null || categoryName == ""){
 		return (false, "category name is empty");
 	}
@@ -101,7 +98,7 @@ function Category(ID, parentCategoryID, name, description) {
 		return $.ajax({
 			url : "http://localhost/laaRest/api/category",
 			data : {
-				'categoryID' : this.parentCategoryID,
+				'parentCategoryID' : this.parentCategoryID,
 				'name' : this.name,
 				'description' : this.description
 			},
