@@ -20,15 +20,21 @@ function populateCategoryList() {
 				categoryIdByName[data[key].name] = data[key].ID; // Add the category name and ID pair
 				
 				// Append to autocomplete category list datalist on add page and edit modal
-				$('#categoryList').append('<option value="' + data[key].name + '">');
+				if($('#categoryList') != undefined){
+					$('#categoryList').append('<option value="' + data[key].name + '">');
+				}
 				
 				// Append to list of categories on edit page
-				$('#editCategoryList').append('<a href="#" class="list-group-item" categoryID="' + data[key].ID + '">' +
-				'<button type="button" class="btn btn-default btn-xs pull-right" style="margin-left: 10px;" data-toggle="modal" data-target="#remove_category_modal" onclick="populateRemoveCategoryModal(this);"><span class="glyphicon glyphicon-remove"></span></button>' +
-				'<button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#edit_category_modal" onclick="populateEditCategoryModal(this);"><span class="glyphicon glyphicon-pencil"></span>' +
-				'</button>' + data[key].name + '</a>');
+				if($('#editCategoryList') != undefined){
+					$('#editCategoryList').append('<a href="#" class="list-group-item" categoryID="' + data[key].ID + '">' +
+					'<button type="button" class="btn btn-default btn-xs pull-right" style="margin-left: 10px;" data-toggle="modal" data-target="#remove_category_modal" onclick="populateRemoveCategoryModal(this);"><span class="glyphicon glyphicon-remove"></span></button>' +
+					'<button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#edit_category_modal" onclick="populateEditCategoryModal(this);"><span class="glyphicon glyphicon-pencil"></span>' +
+					'</button>' + data[key].name + '</a>');
+				}
 			});
-			$('#editCategoryList').btsListFilter('#searchinput');
+			if($('#editCategoryList') != undefined){
+				$('#editCategoryList').btsListFilter('#searchinput');
+			}
 	});
 	
 	promise.error(function(jqXHR, textStatus, errorThrown) {
