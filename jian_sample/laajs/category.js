@@ -113,8 +113,8 @@ function createCategory() {
 
 		if (msg != null) {
 			//notify success (or failure to insert) and redirect to dashboard
-			if(msg == "Successfully inserted category!"){ // FIX THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-				alert(msg);
+			if(msg.return_code == 0){
+				alert(msg.message);
 				window.open("dashboard.html", "_self");
 			}
 			else{
@@ -152,8 +152,8 @@ function editCategory() {
 
 		if (msg != null) {
 			//notify success (or failure to update) and redirect to edit/remove category page
-			if(msg == "Successfully updated category!"){ // FIX THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-				alert(msg);
+			if(msg.return_code == 0){
+				alert(msg.message);
 				window.open("edit_category.html", "_self");
 			}
 			else{
@@ -184,8 +184,8 @@ function deleteCategory() {
 
 	if (msg != null) {
 		//notify success (or failure to delete) and redirect to edit/remove category page
-		if(msg == "Successfully Deleted category!"){ // FIX THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			alert(msg);
+		if(msg.return_code == 0){
+			alert(msg.message);
 			window.open("edit_category.html", "_self");
 		}
 		else{
