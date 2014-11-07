@@ -28,6 +28,7 @@ function populateCategoryList() {
 				'<button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#edit_category_modal" onclick="populateEditCategoryModal(this);"><span class="glyphicon glyphicon-pencil"></span>' +
 				'</button>' + data[key].name + '</a>');
 			});
+			$('#editCategoryList').btsListFilter('#searchinput');
 	});
 	
 	promise.error(function(jqXHR, textStatus, errorThrown) {
