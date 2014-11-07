@@ -26,14 +26,14 @@
 					<br>
 					<div id="editCategoryList" class="list-group">
 						<a href="#" class="list-group-item" categoryID="4">
-						<button type="button" class="btn btn-default btn-xs pull-right" style="margin-left: 10px;">
+						<button type="button" class="btn btn-default btn-xs pull-right" style="margin-left: 10px;"  data-toggle="modal" data-target="#remove_category_modal" onclick="populateRemoveCategoryModal(this);">
 							<span class="glyphicon glyphicon-remove"></span>
 						</button>
 						<button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#edit_category_modal" onclick="populateEditCategoryModal(this);">
 							<span class="glyphicon glyphicon-pencil"></span>
 						</button> Cras justo odio </a>
 					</div>
-					
+
 					<input type="hidden" id="chosenCategoryID" />
 
 					<div id="edit_category_modal" class="modal fade">
@@ -50,8 +50,6 @@
 										<h5 id = "m1" style="color: red;"></h5>
 										<form id="createCategoryForm" class="form-horizontal" onsubmit="event.preventDefault();editCategory();">
 											<div class="form-group">
-
-												
 												<div class="col-sm-10">
 													<label for="category" class="control-label">Parent Category:</label>
 													<input type="text" name="category" id="category" class="form-control" list="categoryList">
@@ -59,18 +57,18 @@
 												</div>
 
 												<hr>
-												
+
 												<div class="col-sm-10">
 													<label for="name" class="control-label required">Name:</label>
 													<input type="text" name="name" id="name" class="form-control" placeholder="required" required>
 												</div>
 												<hr>
 												<hr>
-												
+
 												<div class="col-sm-10">
 													<label for="description" class="control-label">Description:</label>
 													<textarea name="description" id="description" class="form-control">
-								</textarea>
+													</textarea>
 												</div>
 
 											</div>
@@ -88,37 +86,35 @@
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
 					</div><!-- /.modal -->
-					<!--
-					<h5 id = "m1" style="color: red;">
-					</h5>
-					<form id="createCategoryForm" class="form-horizontal" onsubmit="event.preventDefault();createCategory();">
-					<div class="form-group">
-
-					<label for="category" class="col-sm-2 control-label">Parent Category:</label>
-					<div class="col-sm-10">
-					<input type="text" name="category" id="category" class="form-control" list="categoryList">
-					<datalist id="categoryList">
-					</datalist>
-					</div>
-
-					<hr>
-					<label for="name" class="col-sm-2 control-label required">Name:</label>
-					<div class="col-sm-10">
-					<input type="text" name="name" id="name" class="form-control" placeholder="required" required>
-					</div>
-
-					<hr>
-					<hr>
-					<label for="description" class="col-sm-2 control-label">Description:</label>
-					<div class="col-sm-10">
-					<textarea name="description" id="description" class="form-control">
-					</textarea>
-					</div>
-
-					</div>
-					<input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Add Category" >
-					</form>
-					-->
+					
+					<div id="remove_category_modal" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">
+										<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+									</button>
+									<h4 class="modal-title">Remove Category</h4>
+								</div>
+								<div class="modal-body">
+									<div class="form-wrap">
+										<h4 id="removeCategoryName"></h4>
+										<p>Are you sure that you want to remove this category?</p>
+										
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">
+										Cancel
+									</button>
+									<button type="button" class="btn btn-danger" onclick="deleteCategory();">
+										Remove
+									</button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
+					
 				</div>
 			</div>
 			<!-- /.container -->
