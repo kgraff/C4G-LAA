@@ -55,5 +55,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="laajs/resource.js"></script>
+    <script src="laajs/resource_func.js"></script>
   </body>
 </html>

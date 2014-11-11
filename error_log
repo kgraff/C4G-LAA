@@ -1,0 +1,1 @@
+[09-Nov-2014 19:16:46 America/Chicago] PHP Warning:  mysqli::mysqli(): (28000/1045): Access denied for user 'gt86'@'localhost' (using password: NO) in /home2/gt86/public_html/c4g/C4G-LAA/dbconnect.php on line 18
