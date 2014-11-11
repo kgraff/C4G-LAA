@@ -32,6 +32,49 @@
 
 					<input type="hidden" id="chosenCategoryID" />
 
+					<div id="show_category_modal" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">
+										<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+									</button>
+									<h4 class="modal-title">Edit Category</h4>
+								</div>
+								<div class="modal-body">
+									<div class="form-wrap">
+										<h5 id = "m1" style="color: red;"></h5>
+										<form id="editCategoryForm" class="form-horizontal" onsubmit="event.preventDefault();editCategory();">
+											<div class="form-group">
+												<div class="col-sm-10">
+													<label for="show_category" class="control-label">Parent Category:</label>
+													<p name="show_category" id="show_category"></p>
+												</div>
+
+												<div class="col-sm-10">
+													<label for="show_name" class="control-label required">Name:</label>
+													<p name="show_name" id="show_name"></p>
+												</div>
+
+												<div class="col-sm-10">
+													<label for="show_description" class="control-label">Description:</label>
+													<p name="show_description" id="show_description">
+													</p>
+												</div>
+
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">
+										Close
+									</button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
+
 					<div id="edit_category_modal" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
@@ -52,14 +95,10 @@
 													<datalist id="categoryList"></datalist>
 												</div>
 
-												<hr>
-
 												<div class="col-sm-10">
 													<label for="name" class="control-label required">Name:</label>
 													<input type="text" name="name" id="name" class="form-control" placeholder="required" required>
 												</div>
-												<hr>
-												<hr>
 
 												<div class="col-sm-10">
 													<label for="description" class="control-label">Description:</label>

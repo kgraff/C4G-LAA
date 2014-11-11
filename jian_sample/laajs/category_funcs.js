@@ -28,7 +28,8 @@ function populateCategoryList() {
 				if($('#editCategoryList') != undefined){
 					$('#editCategoryList').append('<a href="#" class="list-group-item" categoryID="' + data[key].ID + '">' +
 					'<button type="button" class="btn btn-default btn-xs pull-right" style="margin-left: 10px;" data-toggle="modal" data-target="#remove_category_modal" onclick="populateRemoveCategoryModal(this);"><span class="glyphicon glyphicon-remove"></span></button>' +
-					'<button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#edit_category_modal" onclick="populateEditCategoryModal(this);"><span class="glyphicon glyphicon-pencil"></span>' +
+					'<button type="button" class="btn btn-default btn-xs pull-right" style="margin-left: 10px;" data-toggle="modal" data-target="#edit_category_modal" onclick="populateEditCategoryModal(this);"><span class="glyphicon glyphicon-pencil"></span>' +
+					'<button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#show_category_modal" onclick="populateShowCategoryModal(this);"><span class="glyphicon glyphicon-folder-open"></span></button>' +
 					'</button>' + data[key].name + '</a>');
 				}
 			});
@@ -42,6 +43,34 @@ function populateCategoryList() {
 			console.log("Error: " + errorThrown);
 			alert("Error pre-populating categories.");
 	});
+}
+
+function populateShowCategoryModal(showButton){
+	// The anchor containing the button element contains the categoryID
+	// Therefore, the parentNode must be retrieved
+	var categoryID = showButton.parentNode.getAttribute("categoryID");
+	var chosenCategory = categoryByID[categoryID];
+	if(chosenCategory != undefined){
+		console.log("success");
+		// Populate fields
+		console.log(chosenCategory);
+		if(categoryByID[chosenCategory.parentCategoryID] != undefined)
+		{
+			$('#show_category').text(categoryByID[chosenCategory.parentCategoryID].name);
+		}
+		$('#show_name').text(chosenCategory.name);
+		$('#show_description').text(chosenCategory.description);
+		
+		// Populate hidden category id input
+		$('#chosenCategoryID').val(categoryID);
+	}
+	else{
+		console.log("error showing the chosen category");
+		// close the modal or do something
+		alert("error showing the chosen category");
+		// close the modal
+		setTimeout( "$('#show_category_modal').modal('hide');", 100 );
+	}
 }
 
 function populateEditCategoryModal(editButton){
