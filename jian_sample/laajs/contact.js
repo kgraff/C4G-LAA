@@ -1,16 +1,20 @@
-function Category(ID, parentCategoryID, name, description) {
+function Contact(ID, resourceID, name, email, phone, description) {
 	this.ID = ID;
-	this.parentCategoryID = parentCategoryID;
+	this.resourceID = resourceID;
 	this.name = name;
+	this.email = email;
+	this.phone = phone;
 	this.description = description;
 
-	// AJAX call to create a category
+	// AJAX call to create a contact
 	this.create = function() {
 		return $.ajax({
-			url : apiHost + "api/category",
+			url : apiHost + "api/contact",
 			data : {
-				'parentCategoryID' : this.parentCategoryID,
+				'resourceID' : this.resourceID,
 				'name' : this.name,
+				'email' : this.email,
+				'phone' : this.phone,
 				'description' : this.description
 			},
 			context : document.body,
@@ -28,10 +32,10 @@ function Category(ID, parentCategoryID, name, description) {
 		});
 	};
 	
-	// AJAX call to read a category
+	// AJAX call to read a contact
 	this.read = function() {
 		return $.ajax({
-			url : apiHost + "api/category/id/" + this.ID,
+			url : apiHost + "api/contact/id/" + this.ID,
 			context : document.body,
 			async : false,
 			type : 'GET',
@@ -47,10 +51,10 @@ function Category(ID, parentCategoryID, name, description) {
 		});
 	};
 	
-	// AJAX call to read all categories
+	// AJAX call to read all contacts
 	this.readAll = function() {
 		return $.ajax({
-			url : apiHost + "api/categories",
+			url : apiHost + "api/contacts",
 			context : document.body,
 			async : false,
 			type : 'GET',
@@ -66,13 +70,34 @@ function Category(ID, parentCategoryID, name, description) {
 		});
 	};
 	
-	// AJAX call to update a category
+	// AJAX call to read a contact
+	this.readAllByResource = function() {
+		return $.ajax({
+			url : apiHost + "api/contactsByResource/resourceID/" + this.resourceID,
+			context : document.body,
+			async : false,
+			type : 'GET',
+			dataType : "jsonp",
+			success : function(data) {
+				console.log("Data Success");
+				console.log(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.log("Status: " + textStatus);
+				console.log("Error: " + errorThrown);
+			}
+		});
+	};
+	
+	// AJAX call to update a contact
 	this.update = function() {
 		return $.ajax({
-			url : apiHost + "api/category/id/" + this.ID,
+			url : apiHost + "api/contact/id/" + this.ID,
 			data : {
-				'parentCategoryID' : this.parentCategoryID,
+				'resourceID' : this.resourceID,
 				'name' : this.name,
+				'email' : this.email,
+				'phone' : this.phone,
 				'description' : this.description
 			},
 			context : document.body,
@@ -90,10 +115,10 @@ function Category(ID, parentCategoryID, name, description) {
 		});
 	};
 	
-	// AJAX call to delete a category
+	// AJAX call to delete a contact
 	this.delete = function() {
 		return $.ajax({
-			url : apiHost + "api/category/id/" + this.ID,
+			url : apiHost + "api/contact/id/" + this.ID,
 			context : document.body,
 			async : false,
 			type : 'DELETE',
