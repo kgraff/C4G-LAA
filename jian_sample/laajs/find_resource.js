@@ -22,7 +22,7 @@ function populateMainCategoryList() {
 				// Append to list of categories on edit page
 				// Append only if it is not a subcategory (parentCategoryID = 0), if excluding subcategories
 				if($('#chooseMainCategoryList') != undefined){ //  insert this to exclude subcategories: && data[key].parentCategoryID == 0
-					$('#chooseMainCategoryList').append('<a href="#" class="list-group-item" onclick="event.preventDefault();populateSubCategoryList(this);populateChosenMainCategory(this);" categoryID="' + data[key].ID + '">' +
+					$('#chooseMainCategoryList').append('<a href="#" class="list-group-item" onclick="event.preventDefault();categoryButtonActions(this);" categoryID="' + data[key].ID + '">' +
 					'</button>' + data[key].name + '</a>');
 				}
 			});
@@ -60,7 +60,7 @@ function populateSubCategoryList(mainCategory) {
 		// Append to list of categories on edit page
 		// Append oonly if it is a subcategory of the chosen main category (parentCategoryID = mainCategoryID)
 		if($('#chooseSubCategoryList') != undefined && categoryByID[key].parentCategoryID == mainCategoryID){
-			$('#chooseSubCategoryList').append('<a href="#" class="list-group-item" onclick="event.preventDefault();populateSubCategoryList(this);populateChosenMainCategory(this);" categoryID="' + key + '">' +
+			$('#chooseSubCategoryList').append('<a href="#" class="list-group-item" onclick="event.preventDefault();categoryButtonActions(this);" categoryID="' + key + '">' +
 			'</button>' + categoryByID[key].name + '</a>');
 			numSubCategories = numSubCategories + 1;
 		}
@@ -73,190 +73,36 @@ function populateSubCategoryList(mainCategory) {
 	}
 }
 
-function populateEditCategoryModal(editButton){
-	// The anchor containing the button element contains the categoryID
-	// Therefore, the parentNode must be retrieved
-	var categoryID = editButton.parentNode.getAttribute("categoryID");
-	var chosenCategory = categoryByID[categoryID];
-	if(chosenCategory != undefined){
-		console.log("success");
-		// Populate fields
-		if(categoryByID[chosenCategory.parentCategoryID] != undefined)
-		{
-			$('#category').val(categoryByID[chosenCategory.parentCategoryID].name);
-		}
-		$('#name').val(chosenCategory.name);
-		$('#description').val(chosenCategory.description);
-		
-		// Populate hidden category id input
-		$('#chosenCategoryID').val(categoryID);
-	}
-	else{
-		console.log("error editing the chosen category");
-		// close the modal or do something
-		alert("error editing the chosen category");
-		// close the modal
-		setTimeout( "$('#edit_category_modal').modal('hide');", 100 );
-	}
+function categoryButtonActions(category){
+	populateSubCategoryList(category);
+	populateChosenMainCategory(category);
+	populateResourceList(category);
 }
 
-function populateRemoveCategoryModal(removeButton){
-	// The anchor containing the button element contains the categoryID
-	// Therefore, the parentNode must be retrieved
-	var categoryID = removeButton.parentNode.getAttribute("categoryID");
-	var chosenCategory = categoryByID[categoryID];
-	if(chosenCategory != undefined){
-		console.log("success");
-		
-		$('#removeCategoryName').text(chosenCategory.name);
-		
-		// Populate hidden category id input
-		$('#chosenCategoryID').val(categoryID);
-	}
-	else{
-		console.log("error removing the chosen category");
-		// close the modal or do something
-		alert("error removing the chosen category");
-		// close the modal
-		setTimeout( "$('#remove_category_modal').modal('hide');", 100 );
-	}
-}
-
-function createCategory() {
-	// validate the user input used to create a category
-	var valid = validateCategory(0);
-	if (valid == true) {
-		var parentCategory = $('#category').val();
-		var parentCategoryID = categoryIdByName[parentCategory];
-		var name = $('#name').val();
-		var description = $('#description').val();
-
-		var category = new Category(null, parentCategoryID, name, description);
-		var promise = category.create();
-		var msg = null;
-
-		promise.success(function(data) {
-			console.log("attempt: " + data);
-			msg = data;
-		}); 
-
-		if (msg != null) {
-			//notify success (or failure to insert) and redirect to dashboard
-			if(msg.return_code == 0){
-				alert(msg.message);
-				window.open("dashboard.html", "_self");
-			}
-			else{
-				alert("Failed to create category. Please try again later.");
-			}
-		} else {
-			//notify failure and prompt to try again later.
-			alert("Failed to create category. Please try again later.");
-		}
-	}
-	else{
-		$('#m1').text("error: " + valid); //Display the error to the user
-	}
-}
-
-function editCategory() {
-	// validate the user input used to create a category
-	var valid = validateCategory(1);
-	if (valid == true) {
-		var parentCategory = $('#category').val();
-		var parentCategoryID = categoryIdByName[parentCategory];
-		var name = $('#name').val();
-		var description = $('#description').val();
-		// Get the chosen category ID from hidden input
-		var ID = $('#chosenCategoryID').val();
-
-		var category = new Category(ID, parentCategoryID, name, description);
-		var promise = category.update();
-		var msg = null;
-
-		promise.success(function(data) {
-			console.log("attempt: " + data);
-			msg = data;
-		}); 
-
-		if (msg != null) {
-			//notify success (or failure to update) and redirect to edit/remove category page
-			if(msg.return_code == 0){
-				alert(msg.message);
-				window.open("edit_category.html", "_self");
-			}
-			else{
-				alert("Failed to update category. Please try again later.");
-			}
-		} else {
-			//notify failure and prompt to try again later.
-			alert("Failed to update category. Please try again later.");
-		}
-	}
-	else{
-		$('#m1').text("error: " + valid); //Display the error to the user
-	}
-}
-
-function deleteCategory() {
-	// Get the chosen category ID from hidden input
-	var ID = $('#chosenCategoryID').val();
-
-	var category = new Category(ID, null, null, null);
-	var promise = category.delete();
-	var msg = null;
-
+function populateResourceList(chosenCategory) {
+	$('#chooseResourceList').empty();
+	// Retrieve all resources for the chosen category
+	var category = new Category(null, null, null, null);
+	var promise = category.readAll();
 	promise.success(function(data) {
-		console.log("attempt: " + data);
-		msg = data;
-	}); 
-
-	if (msg != null) {
-		//notify success (or failure to delete) and redirect to edit/remove category page
-		if(msg.return_code == 0){
-			alert(msg.message);
-			window.open("edit_category.html", "_self");
-		}
-		else{
-			alert("Failed to delete category. Please try again later.");
-		}
-	} else {
-		//notify failure and prompt to try again later.
-		alert("Failed to delete category. Please try again later.");
-	}
-}
-
-function validateCategory(mode) {
-	// mode = 0 for create or 1 for edit
+			console.log("attempt: " + data);
+			// iterate through each category returned and add it to the category list and
+			// populate the object containing the list of categories and their IDs
+			$.each(data, function(key, value) {				
+				// Append to list of resources on find resource page
+				if($('#chooseResourceList') != undefined){
+					$('#chooseResourceList').append('<a href="#" class="list-group-item" onclick="event.preventDefault();" resourceID="' + data[key].ID + '">' +
+					'</button>' + data[key].name + '</a>');
+				}
+			});
+			if($('#chooseResourceList') != undefined){
+				$('#chooseResourceList').btsListFilter('#resourceSearchInput');
+			}
+	});
 	
-	// Check to ensure parent category is correct if one is chosen
-	// Get parent category	
-	var parentCategory = $('#category').val();
-	if(parentCategory != null && parentCategory != "" && categoryIdByName[parentCategory] == undefined){
-		return (false, "invalid parent category");
-	}
-	
-	// Ensure the name is not empty
-	var categoryName = $('#name').val();
-	if(categoryName == null || categoryName == ""){
-		return (false, "category name is empty");
-	}
-	
-	// Ensure the name does not already exist (case-sensitive)
-	// if creating
-	if(mode == 0){
-		if(categoryIdByName[categoryName] != undefined){
-			return (false, "category already exists");
-		}
-	}
-	// if editing
-	if(mode == 1){
-		var ID = $('#chosenCategoryID').val();
-		// If the edited category name does not match another category (besides the one currently being edited)
-		if(ID != categoryIdByName[categoryName] && categoryIdByName[categoryName] != undefined){
-			return (false, "category already exists");
-		}
-	}
-	
-	return true;
+	promise.error(function(jqXHR, textStatus, errorThrown) {
+			console.log("Status: " + textStatus);
+			console.log("Error: " + errorThrown);
+			alert("Error populating resources.");
+	});
 }
