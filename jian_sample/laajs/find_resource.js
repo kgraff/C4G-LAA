@@ -82,16 +82,17 @@ function categoryButtonActions(category){
 function populateResourceList(chosenCategory) {
 	$('#chooseResourceList').empty();
 	// Retrieve all resources for the chosen category
-	var category = new Category(null, null, null, null);
+	var categoryID = chosenCategory.getAttribute("categoryID");
+	var category = new Category(categoryID, null, null, null);
 	var promise = category.readAll();
 	promise.success(function(data) {
 			console.log("attempt: " + data);
-			// iterate through each category returned and add it to the category list and
-			// populate the object containing the list of categories and their IDs
+			// iterate through each resource returned and add it to the resource list and
+			// populate the object containing the list of resources and their IDs
 			$.each(data, function(key, value) {				
 				// Append to list of resources on find resource page
 				if($('#chooseResourceList') != undefined){
-					$('#chooseResourceList').append('<a href="#" class="list-group-item" onclick="event.preventDefault();" resourceID="' + data[key].ID + '">' +
+					$('#chooseResourceList').append('<a href="#" class="list-group-item" onclick="event.preventDefault();viewResource(this);" resourceID="' + data[key].ID + '">' +
 					'</button>' + data[key].name + '</a>');
 				}
 			});
@@ -105,4 +106,10 @@ function populateResourceList(chosenCategory) {
 			console.log("Error: " + errorThrown);
 			alert("Error populating resources.");
 	});
+}
+
+function viewResource(chosenResource){
+	// navigate to the view resource page
+	var resourceID = chosenResource.getAttribute("resourceID");
+	window.open("view_resource.php?id=" + resourceID, "_self");
 }

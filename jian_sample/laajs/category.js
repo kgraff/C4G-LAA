@@ -7,7 +7,7 @@ function Category(ID, parentCategoryID, name, description) {
 	// AJAX call to create a category
 	this.create = function() {
 		return $.ajax({
-			url : "http://localhost/laaRest/api/category",
+			url : apiHost + "api/category",
 			data : {
 				'parentCategoryID' : this.parentCategoryID,
 				'name' : this.name,
@@ -31,7 +31,7 @@ function Category(ID, parentCategoryID, name, description) {
 	// AJAX call to read a category
 	this.read = function() {
 		return $.ajax({
-			url : "http://localhost/laaRest/api/category/id/" + this.ID,
+			url : apiHost + "api/category/id/" + this.ID,
 			context : document.body,
 			async : false,
 			type : 'GET',
@@ -50,7 +50,7 @@ function Category(ID, parentCategoryID, name, description) {
 	// AJAX call to read all categories
 	this.readAll = function() {
 		return $.ajax({
-			url : "http://localhost/laaRest/api/categories",
+			url : apiHost + "api/categories",
 			context : document.body,
 			async : false,
 			type : 'GET',
@@ -69,7 +69,7 @@ function Category(ID, parentCategoryID, name, description) {
 	// AJAX call to update a category
 	this.update = function() {
 		return $.ajax({
-			url : "http://localhost/laaRest/api/category/id/" + this.ID,
+			url : apiHost + "api/category/id/" + this.ID,
 			data : {
 				'parentCategoryID' : this.parentCategoryID,
 				'name' : this.name,
@@ -93,7 +93,7 @@ function Category(ID, parentCategoryID, name, description) {
 	// AJAX call to update a category
 	this.delete = function() {
 		return $.ajax({
-			url : "http://localhost/laaRest/api/category/id/" + this.ID,
+			url : apiHost + "api/category/id/" + this.ID,
 			context : document.body,
 			async : false,
 			type : 'DELETE',
