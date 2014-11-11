@@ -69,7 +69,17 @@ function populateSubCategoryList(mainCategory) {
 	if(numSubCategories > 0){
 		if($('#chooseSubCategoryList') != undefined){
 			$('#chooseSubCategoryList').btsListFilter('#subSearchInput');
-		}		
+			// fade in the div to show the list
+			$('#subCategoriesDiv').fadeIn("slow");
+		}
+		else{
+			// fade out the div to hide the list
+			$('#subCategoriesDiv').fadeOut("slow");
+		}
+	}
+	else{
+		// fade out the div to hide the list
+			$('#subCategoriesDiv').fadeOut("slow");
 	}
 }
 
@@ -89,15 +99,30 @@ function populateResourceList(chosenCategory) {
 			console.log("attempt: " + data);
 			// iterate through each resource returned and add it to the resource list and
 			// populate the object containing the list of resources and their IDs
+			var numResources = 0;
 			$.each(data, function(key, value) {				
 				// Append to list of resources on find resource page
 				if($('#chooseResourceList') != undefined){
 					$('#chooseResourceList').append('<a href="#" class="list-group-item" onclick="event.preventDefault();viewResource(this);" resourceID="' + data[key].ID + '">' +
 					'</button>' + data[key].name + '</a>');
+					numResources = numResources + 1;
 				}
 			});
-			if($('#chooseResourceList') != undefined){
-				$('#chooseResourceList').btsListFilter('#resourceSearchInput');
+			
+			if(numResources > 0){
+				if($('#chooseResourceList') != undefined){
+					$('#chooseResourceList').btsListFilter('#resourceSearchInput');
+					// fade in the div to show the list
+					$('#resourcesDiv').fadeIn("slow");
+				}
+				else{
+					// fade out the div to hide the list
+					$('#resourcesDiv').fadeOut("slow");
+				}
+			}
+			else{
+				// fade out the div to hide the list
+				$('#resourcesDiv').fadeOut("slow");
 			}
 	});
 	
