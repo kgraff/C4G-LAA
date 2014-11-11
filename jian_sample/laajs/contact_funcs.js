@@ -21,11 +21,6 @@ function populateContactList() {
 				contactByID[data[key].ID] = {"resourceID": data[key].resourceID, "name": data[key].name, "email": data[key].email, "phone": data[key].phone, "description": data[key].description};
 				contactIdByName[data[key].name] = data[key].ID; // Add the contact name and ID pair
 				
-				// Append to autocomplete contact list datalist on add page and edit modal
-				if($('#contactList') != undefined){
-					$('#contactList').append('<option value="' + data[key].name + '">');
-				}
-				
 				// Append to list of contacts on edit page
 				if($('#contactList') != undefined){
 					$('#contactList').append('<a class="list-group-item" contactID="' + data[key].ID + '">' +
@@ -126,14 +121,14 @@ function populateRemoveContactModal(removeButton){
 
 function createContact() {
 	// validate the user input used to create a contact
-	var valid = validateContact();
+	var valid = validateContact(0);
 	if (valid == true) {
-		var parentContact = $('#contact').val();
-		var parentContactID = contactIdByName[parentContact];
-		var name = $('#name').val();
-		var description = $('#description').val();
+		var name = $('#add_name').val();
+		var email = $('#add_email').val();
+		var phone = $('#add_phone').val();
+		var description = $('#add_description').val();
 
-		var contact = new Contact(null, parentContactID, name, description);
+		var contact = new Contact(null, resourceID, name, email, phone, description);
 		var promise = contact.create();
 		var msg = null;
 
@@ -143,10 +138,10 @@ function createContact() {
 		}); 
 
 		if (msg != null) {
-			//notify success (or failure to insert) and redirect to dashboard
+			//notify success (or failure to update) and redirect to edit/remove contact page
 			if(msg.return_code == 0){
 				alert(msg.message);
-				window.open("dashboard.html", "_self");
+				window.open("contact.html", "_self");
 			}
 			else{
 				alert("Failed to create contact. Please try again later.");
@@ -163,7 +158,7 @@ function createContact() {
 
 function editContact() {
 	// validate the user input used to create a contact
-	var valid = validateContact();
+	var valid = validateContact(1);
 	if (valid == true) {
 		var name = $('#name').val();
 		var email = $('#email').val();
@@ -196,7 +191,6 @@ function editContact() {
 		}
 	}
 	else{
-		alert(valid);
 		$('#m2').text("error: " + valid); //Display the error to the user
 	}
 }
@@ -229,12 +223,22 @@ function deleteContact() {
 	}
 }
 
-function validateContact() {
+function validateContact(mode) {
+	// mode = 0 for create or 1 for edit
 	
 	// Ensure the name is not empty
-	var contactName = $('#name').val();
-	if(contactName == null || contactName == ""){
-		return (false, "contact name is empty");
+	if(mode == 0){
+		var contactName = $('#add_name').val();
+		if(contactName == null || contactName == ""){
+			return (false, "contact name is empty");
+		}
+	}
+	
+	if(mode == 1){
+		var contactName = $('#name').val();
+		if(contactName == null || contactName == ""){
+			return (false, "contact name is empty");
+		}
 	}
 	
 	return true;
