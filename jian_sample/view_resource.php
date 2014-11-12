@@ -215,12 +215,12 @@
 											</div>
 
 											<div class="col-sm-10">
-												<label for="edit_email" class="control-label required">Name:</label>
+												<label for="edit_email" class="control-label required">Email:</label>
 												<input type="email" name="edit_email" id="edit_email" class="form-control">
 											</div>
 
 											<div class="col-sm-10">
-												<label for="edit_phone" class="control-label required">Name:</label>
+												<label for="edit_phone" class="control-label required">Phone:</label>
 												<input type="tel" name="edit_phone" id="edit_phone" class="form-control">
 											</div>
 

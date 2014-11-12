@@ -1,4 +1,4 @@
-function Resource(ID, categoryID, name, phone, address, city, state, zip, description, eligibility, intakeProcedure, documents, fees, languages, services, website, serviceHours) {
+function Resource(ID, categoryID, name, phone, address, city, state, zip, description, serviceHours, eligibility, intakeProcedure, documents, fees, languages, services, website) {
 	this.ID = ID;
 	this.categoryID = categoryID;
 	this.name = name;
@@ -8,6 +8,7 @@ function Resource(ID, categoryID, name, phone, address, city, state, zip, descri
 	this.state = state;
 	this.zip = zip;
 	this.description = description;
+	this.serviceHours = serviceHours;
 	this.eligibility = eligibility;
 	this.intakeProcedure = intakeProcedure;
 	this.documents = documents;
@@ -15,7 +16,6 @@ function Resource(ID, categoryID, name, phone, address, city, state, zip, descri
 	this.languages = languages;
 	this.services = services;
 	this.website = website;
-	this.serviceHours = serviceHours;
 	
 	this.create = function() {
 		return $.ajax({

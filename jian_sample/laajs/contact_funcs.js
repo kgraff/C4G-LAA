@@ -143,7 +143,7 @@ function createContact() {
 			//notify success (or failure to update) and redirect to edit/remove contact page
 			if(msg.return_code == 0){
 				alert(msg.message);
-				window.open("contact.html", "_self");
+				window.open("view_resource.php?id=" + resourceID, "_self");
 			}
 			else{
 				alert("Failed to create contact. Please try again later.");
@@ -182,7 +182,7 @@ function editContact() {
 			//notify success (or failure to update) and redirect to edit/remove contact page
 			if(msg.return_code == 0){
 				alert(msg.message);
-				window.open("contact.html", "_self");
+				window.open("view_resource.php?id=" + resourceID, "_self");
 			}
 			else{
 				alert("Failed to update contact. Please try again later.");
@@ -214,7 +214,7 @@ function deleteContact() {
 		//notify success (or failure to delete) and redirect to edit/remove contact page
 		if(msg.return_code == 0){
 			alert(msg.message);
-			window.open("contact.html", "_self");
+			window.open("view_resource.php?id=" + resourceID, "_self");
 		}
 		else{
 			alert("Failed to delete contact. Please try again later.");
