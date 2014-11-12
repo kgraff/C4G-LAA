@@ -1,91 +1,146 @@
+function Resource(ID, categoryID, name, phone, address, city, state, zip, description, eligibility, intakeProcedure, documents, fees, languages, services, website, serviceHours) {
+	this.ID = ID;
+	this.categoryID = categoryID;
+	this.name = name;
+	this.phone = phone;
+	this.address = address;
+	this.city = city;
+	this.state = state;
+	this.zip = zip;
+	this.description = description;
+	this.eligibility = eligibility;
+	this.intakeProcedure = intakeProcedure;
+	this.documents = documents;
+	this.fees = fees;
+	this.languages = languages;
+	this.services = services;
+	this.website = website;
+	this.serviceHours = serviceHours;
+	
+	this.create = function() {
+		return $.ajax({
+			url : apiHost + "api/resource",
+			data : {
+				'categoryID' : this.categoryID,
+				'name' : this.name,
+				'phone' : this.phone,
+				'address' : this.address,
+				'city' : this.city,
+				'state' : this.state,
+				'zip' : this.zip,
+				'description' : this.description,
+				'serviceHours' : this.serviceHours,
+				'eligibility' : this.eligibility,
+				'intakeProcedure' : this.intakeProcedure,
+				'documents' : this.documents,
+				'fees' : this.fees,
+				'languages' : this.languages,
+				'services' : this.services,
+				'website' : this.website
+			},
+			context : document.body,
+			async : false,
+			type : 'POST',
+			dataType : "jsonp",
+			success : function(data) {
+				console.log("Data Success");
+				console.log(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.log("Status: " + textStatus);
+				console.log("Error: " + errorThrown);
+			}
+		});
+	};
+	
+	this.read = function() {
+		return $.ajax({
+			url : apiHost + "api/resource/id/" + this.ID,
+			context : document.body,
+			async : false,
+			type : 'GET',
+			dataType : "json",
+			success : function(data) {
+				console.log("Data Success");
+				console.log(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.log("Status: " + textStatus);
+				console.log("Error: " + errorThrown);
+			}
+		});
+	};
 
-function Resourse() {
-	this.getRs = function() {
+	this.update = function() {
 		return $.ajax({
-            url: "../laa_webapp/api/resource/id/"+sourceID,
-            context : document.body,
-            async : false,
-            type : 'GET',
-            dataType : "json",
-            success : function(data) {
-                console.log("Data Success");
-                console.log(data);
-            },
-            error : function(jqXHR, textStatus, errorThrown) {
-                console.log("Status: " + textStatus);
-                console.log("Error: " + errorThrown);
-            }
-        });
-    }
-    this.updateRs = function () {
-    	this.name = document.getElementById("name1").value;
-        this.phone = document.getElementById("phone1").value;
-        this.address = document.getElementById("address1").value;
-        this.city = document.getElementById("city1").value;
-        this.state = document.getElementById("state").value;
-        this.zip = document.getElementById("zip1").value;
-        this.description = document.getElementById("description1").value;
-        this.eligibility = document.getElementById("eligibility1").value;
-        this.intakeProcedure = document.getElementById("intakeProcedure1").value;
-        this.documents = document.getElementById("documents1").value;
-        this.fees = document.getElementById("fees1").value;
-        this.languages = document.getElementById("languages1").value;
-        this.services = document.getElementById("services1").value;
-        this.website = document.getElementById("website1").value;
-        this.serviceHours = document.getElementById("serviceHours1").value;
-    	return $.ajax({
-            url : "../laa_webapp/api/resource/id/"+sourceID,
-            data : {
-            	'id' : sourceID,
-                'categoryID' :categoryID,
-                'name' : this.name,
-                'phone' : this.phone,
-                'address' : this.address,
-                'city' : this.city,
-                'state' : this.state,
-                'zip' : this.zip,
-                'description' : this.description,
-                'serviceHours': this.serviceHours,
-                'eligibility' : this.eligibility,
-                'intakeProcedure' : this.intakeProcedure,
-                'documents' : this.documents,
-                'fees' : this.fees,
-                'languages' : this.languages,
-                'services' : this.services,
-                'website' : this.website
-            },
-            context : document.body,
-            async : false,
-            type : 'PUT',
-            dataType : "jsonp",
-            success : function(data) {
-                console.log("Data Success");
-                console.log(data);
-            },
-            error : function(jqXHR, textStatus, errorThrown) {
-                console.log("Status: " + textStatus);
-                console.log("Error: " + errorThrown);
-            }
-        });
-	}
-	this.deleteRs = function(){
+			url : apiHost + "api/resource/id/" + this.ID,
+			data : {
+				'categoryID' : this.categoryID,
+				'name' : this.name,
+				'phone' : this.phone,
+				'address' : this.address,
+				'city' : this.city,
+				'state' : this.state,
+				'zip' : this.zip,
+				'description' : this.description,
+				'serviceHours' : this.serviceHours,
+				'eligibility' : this.eligibility,
+				'intakeProcedure' : this.intakeProcedure,
+				'documents' : this.documents,
+				'fees' : this.fees,
+				'languages' : this.languages,
+				'services' : this.services,
+				'website' : this.website
+			},
+			context : document.body,
+			async : false,
+			type : 'PUT',
+			dataType : "jsonp",
+			success : function(data) {
+				console.log("Data Success");
+				console.log(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.log("Status: " + textStatus);
+				console.log("Error: " + errorThrown);
+			}
+		});
+	};
+
+	this.delete = function() {
 		return $.ajax({
-            url : "../laa_webapp/api/resource/id/"+sourceID,
-            data : {
-            	'id' : sourceID
-            },
-            context : document.body,
-            async : false,
-            type : 'DELETE',
-            dataType : "jsonp",
-            success : function(data) {
-                console.log("Data Success");
-                console.log(data);
-            },
-            error : function(jqXHR, textStatus, errorThrown) {
-                console.log("Status: " + textStatus);
-                console.log("Error: " + errorThrown);
-            }
-        });
-	}
+			url : apiHost + "api/resource/id/" + this.ID,
+			context : document.body,
+			async : false,
+			type : 'DELETE',
+			dataType : "jsonp",
+			success : function(data) {
+				console.log("Data Success");
+				console.log(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.log("Status: " + textStatus);
+				console.log("Error: " + errorThrown);
+			}
+		});
+	};
+	
+	this.readAllByCategory = function() {
+		return $.ajax({
+			url : apiHost + "api/resourcesByCategory/categoryID/" + this.categoryID,
+			context : document.body,
+			async : false,
+			type : 'GET',
+			dataType : "json",
+			success : function(data) {
+				console.log("Data Success");
+				console.log(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.log("Status: " + textStatus);
+				console.log("Error: " + errorThrown);
+			}
+		});
+	};
+
 }
