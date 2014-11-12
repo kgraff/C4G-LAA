@@ -154,7 +154,7 @@ function createResource() {
     var msg = null;
 
     promise.success(function(data) {
-        console.log("attempt: " + data)
+        console.log("attempt: " + data);
         msg = data;
     });
     if (msg != null) {

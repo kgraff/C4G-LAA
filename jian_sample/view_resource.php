@@ -81,9 +81,9 @@
 					</button>
 				</div>
 			</div>
-			
+
 			<hr>
-			
+
 			<div class="form-wrap">
 				<h4>Contacts</h4>
 				<hr>
@@ -110,7 +110,7 @@
 							<div class="modal-body">
 								<div class="form-wrap">
 									<h5 id = "m1" style="color: red;"></h5>
-									<form id="addContactForm" class="form-horizontal" onsubmit="event.preventDefault();">
+									<form id="addContactForm" class="form-horizontal" onsubmit="event.preventDefault();createContact();">
 										<div class="form-group">
 											<div class="col-sm-10">
 												<label for="add_name" class="control-label required">Name:</label>
@@ -132,6 +132,8 @@
 												<textarea name="add_description" id="add_description" class="form-control">
 													</textarea>
 											</div>
+											
+											<input type="submit" id="submitAddContact" style="display: none;" value="" >
 
 										</div>
 									</form>
@@ -141,7 +143,7 @@
 								<button type="button" class="btn btn-default" data-dismiss="modal">
 									Close
 								</button>
-								<button type="button" class="btn btn-primary" onclick="createContact();">
+								<button type="button" class="btn btn-primary" onclick="$('#submitAddContact').click();">
 									Create
 								</button>
 							</div>
@@ -207,7 +209,7 @@
 							<div class="modal-body">
 								<div class="form-wrap">
 									<h5 id = "m2" style="color: red;"></h5>
-									<form id="editContactForm" class="form-horizontal" onsubmit="event.preventDefault();">
+									<form id="editContactForm" class="form-horizontal" onsubmit="event.preventDefault();editContact();">
 										<div class="form-group">
 											<div class="col-sm-10">
 												<label for="edit_name" class="control-label required">Name:</label>
@@ -230,6 +232,8 @@
 													</textarea>
 											</div>
 
+											<input type="submit" id="submitEditContact" style="display: none;" value="" >
+
 										</div>
 									</form>
 								</div>
@@ -238,7 +242,7 @@
 								<button type="button" class="btn btn-default" data-dismiss="modal">
 									Close
 								</button>
-								<button type="button" class="btn btn-primary" onclick="editContact();">
+								<button type="button" class="btn btn-primary" onclick="$('#submitEditContact').click();">
 									Save changes
 								</button>
 							</div>
@@ -285,7 +289,9 @@
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
 		<script src="laajs/bootstrap-list-filter.min.js"></script>
-		<script>var resourceID = <?php echo $_GET['id'] ?>;</script>
+		<script>var resourceID =<?php echo $_GET['id'] ?>
+			;
+		</script>
 		<script src="laajs/apihost.js"></script>
 		<script src="laajs/resource.js"></script>
 		<script src="laajs/resource_func.js"></script>
