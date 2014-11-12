@@ -34,12 +34,6 @@ function populateContactList() {
 				$('#contactList').btsListFilter('#searchinput');
 			}
 	});
-	
-	promise.error(function(jqXHR, textStatus, errorThrown) {
-			console.log("Status: " + textStatus);
-			console.log("Error: " + errorThrown);
-			alert("Error pre-populating contacts.");
-	});
 }
 
 function populateShowContactModal(showButton){
@@ -80,10 +74,10 @@ function populateEditContactModal(editButton){
 	if(chosenContact != undefined){
 		console.log("success");
 		// Populate fields
-		$('#name').val(chosenContact.name);
-		$('#email').val(chosenContact.email);
-		$('#phone').val(chosenContact.phone);
-		$('#description').val(chosenContact.description);
+		$('#edit_name').val(chosenContact.name);
+		$('#edit_email').val(chosenContact.email);
+		$('#edit_phone').val(chosenContact.phone);
+		$('#edit_description').val(chosenContact.description);
 		
 		// Populate hidden contact id input
 		$('#chosenContactID').val(contactID);
@@ -160,10 +154,10 @@ function editContact() {
 	// validate the user input used to create a contact
 	var valid = validateContact(1);
 	if (valid == true) {
-		var name = $('#name').val();
-		var email = $('#email').val();
-		var phone = $('#phone').val();
-		var description = $('#description').val();
+		var name = $('#edit_name').val();
+		var email = $('#edit_email').val();
+		var phone = $('#edit_phone').val();
+		var description = $('#edit_description').val();
 		// Get the chosen contact ID from hidden input
 		var ID = $('#chosenContactID').val();
 
@@ -235,7 +229,7 @@ function validateContact(mode) {
 	}
 	
 	if(mode == 1){
-		var contactName = $('#name').val();
+		var contactName = $('#edit_name').val();
 		if(contactName == null || contactName == ""){
 			return (false, "contact name is empty");
 		}
