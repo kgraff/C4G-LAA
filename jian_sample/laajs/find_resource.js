@@ -93,8 +93,8 @@ function populateResourceList(chosenCategory) {
 	$('#chooseResourceList').empty();
 	// Retrieve all resources for the chosen category
 	var categoryID = chosenCategory.getAttribute("categoryID");
-	var category = new Category(categoryID, null, null, null);
-	var promise = category.readAll();
+	var resource= new Resource(null,categoryID,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+	var promise = resource.readAllByCategory();
 	promise.success(function(data) {
 			console.log("attempt: " + data);
 			// iterate through each resource returned and add it to the resource list and
