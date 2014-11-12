@@ -124,7 +124,47 @@ function edit() {
 	}
 
 }
+function createResource() {
+    var categoryID =document.getElementById('category').value;
+    var name =document.getElementById('name').value;
+    var phone =document.getElementById('phone').value;
+    var address =document.getElementById('address').value;
+    var city =document.getElementById('city').value;
+    var state =document.getElementById('state').value;
+    var description =document.getElementById('description').value;
+    var zip =document.getElementById('zip').value;
+    var serviceHours =document.getElementById('serviceHours').value;
+    var eligibility =document.getElementById('eligibility').value;
+    var intakeProcedure =document.getElementById('intakeProcedure').value;
+    var fees =document.getElementById('fees').value;
+    var languages =document.getElementById('languages').value;
+    var services =document.getElementById('services').value;
+    var website =document.getElementById('website').value;
+    var documents =document.getElementById('documents').value;
+    if (categoryID =="") {
+        document.getElementById("m1").innerHTML="Please enter categoryID";
+        return;
+    }
+    if (name=="") {
+        document.getElementById("m2").innerHTML="Please enter the name";
+        return;
+    }
+    var resource= new Resource(null,categoryID,name,phone,address,city,state,zip,description,eligibility,intakeProcedure,documents,fees,languages,services,website,serviceHours);
+    var promise = resource.create();
+    var msg = null;
 
+    promise.success(function(data) {
+        console.log("attempt: " + data)
+        msg = data;
+    });
+    if (msg != null) {
+        window.open("dashboard.html","_self");
+    } else {
+        document.getElementById("same").innerHTML="The email has already been in the database";
+    }
+    
+
+}
 function del() {
 	var res = new Resource(resourceID, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 	var promise = res.delete();
