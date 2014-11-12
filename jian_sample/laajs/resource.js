@@ -142,39 +142,4 @@ function Resource(ID, categoryID, name, phone, address, city, state, zip, descri
 			}
 		});
 	};
-	this.create = function() {
-        return $.ajax({
-            url : apiHost +"api/resource",
-            data : {
-                'categoryID' : this.categoryID,
-                'name' : this.name,
-                'phone' : this.phone,
-                'address' : this.address,
-                'city' : this.city,
-                'state' : this.state,
-                'zip' : this.zip,
-                'description' : this.description,
-                'serviceHours': this.serviceHours,
-                'eligibility' : this.eligibility,
-                'intakeProcedure' : this.intakeProcedure,
-                'documents' : this.documents,
-                'fees' : this.fees,
-                'languages' : this.languages,
-                'services' : this.services,
-                'website' : this.website
-            },
-            context : document.body,
-            async : false,
-            type : 'POST',
-            dataType : "jsonp",
-            success : function(data) {
-                console.log("Data Success");
-                console.log(data);
-            },
-            error : function(jqXHR, textStatus, errorThrown) {
-                console.log("Status: " + textStatus);
-                console.log("Error: " + errorThrown);
-            }
-        });
-    }
 }
