@@ -125,12 +125,6 @@ function populateResourceList(chosenCategory) {
 				$('#resourcesDiv').fadeOut("slow");
 			}
 	});
-	
-	promise.error(function(jqXHR, textStatus, errorThrown) {
-			console.log("Status: " + textStatus);
-			console.log("Error: " + errorThrown);
-			alert("Error populating resources.");
-	});
 }
 
 function viewResource(chosenResource){

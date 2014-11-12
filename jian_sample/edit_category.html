@@ -43,8 +43,8 @@
 								</div>
 								<div class="modal-body">
 									<div class="form-wrap">
-										<h5 id = "m1" style="color: red;"></h5>
-										<form id="editCategoryForm" class="form-horizontal" onsubmit="event.preventDefault();editCategory();">
+										<h5 id = "m2" style="color: red;"></h5>
+										<form id="showCategoryForm" class="form-horizontal" onsubmit="event.preventDefault();">
 											<div class="form-group">
 												<div class="col-sm-10">
 													<label for="show_category" class="control-label">Parent Category:</label>
@@ -105,6 +105,8 @@
 													<textarea name="description" id="description" class="form-control">
 													</textarea>
 												</div>
+												
+												<input type="submit" id="submitEditCategory" style="display: none;" value="" >
 
 											</div>
 										</form>
@@ -114,7 +116,7 @@
 									<button type="button" class="btn btn-default" data-dismiss="modal">
 										Close
 									</button>
-									<button type="button" class="btn btn-primary" onclick="editCategory();">
+									<button type="button" class="btn btn-primary" onclick="$('#submitEditCategory').click();">
 										Save changes
 									</button>
 								</div>

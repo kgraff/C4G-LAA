@@ -194,6 +194,9 @@ function editCategory() {
 		}
 	}
 	else{
+		console.log("here");
+		console.log(valid);
+		console.log($('#m2'));
 		$('#m1').text("error: " + valid); //Display the error to the user
 	}
 }
