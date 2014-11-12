@@ -1,6 +1,5 @@
 var contactByID = {};
 var contactIdByName = {};
-var resourceID = 3; // EDIT THIS!!!!!!!!!!!!!!!!!!!!!!11
 
 $(document).ready(function() {
 	populateContactList();
@@ -10,12 +9,13 @@ $(document).ready(function() {
 
 function populateContactList() {
 	// Retrieve all contacts
-	var contact = new Contact(null, null, null, null);
-	var promise = contact.readAll();
+	var contact = new Contact(null, resourceID, null, null, null, null);
+	var promise = contact.readAllByResource(resourceID);
 	promise.success(function(data) {
 			console.log("attempt: " + data);
 			// iterate through each contact returned and add it to the contact list and
 			// populate the object containing the list of contacts and their IDs
+			var numContacts = 0;
 			$.each(data, function(key, value) {
 				console.log(data[key]);
 				contactByID[data[key].ID] = {"resourceID": data[key].resourceID, "name": data[key].name, "email": data[key].email, "phone": data[key].phone, "description": data[key].description};
@@ -28,11 +28,19 @@ function populateContactList() {
 					'<button type="button" class="btn btn-default btn-xs pull-right" style="margin-left: 10px;" data-toggle="modal" data-target="#edit_contact_modal" onclick="populateEditContactModal(this);"><span class="glyphicon glyphicon-pencil"></span>' +
 					'<button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#show_contact_modal" onclick="populateShowContactModal(this);"><span class="glyphicon glyphicon-folder-open"></span></button>' +
 					'</button>' + data[key].name + '</a>');
+					numContacts = numContacts + 1;
 				}
 			});
-			if($('#contactList') != undefined){
+			if($('#contactList') != undefined && numContacts > 0){
 				$('#contactList').btsListFilter('#searchinput');
 			}
+			console.log(numContacts);
+			console.log($('#searchinput'));
+			if(numContacts < 1){
+				console.log("here");
+				$('#searchinputDiv').hide();
+			}
+			
 	});
 }
 

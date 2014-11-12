@@ -23,8 +23,8 @@ function begin (sid) {
 		window.open("dashboard.html","_self");
 		return;	
 	}
-	var res = new Resourse();
-	var promise = res.getRs();
+	var res = new Resource(resourceID,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+	var promise = res.read();
 	var msg = null;
     promise.success(function(data) {
         console.log("attempt: " + data)

@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Bootstrap 101 Template</title>
+		<title>View Resource</title>
 		<script type="text/javascript"></script>
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -91,7 +91,7 @@
 					Add Contact
 				</button>
 				<hr>
-				<div class="form-group">
+				<div id="searchinputDiv" class="form-group">
 					<input id="searchinput" class="form-control" type="search" placeholder="Search..." />
 				</div>
 				<div id="contactList" class="list-group"></div>
@@ -284,6 +284,8 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
+		<script src="laajs/bootstrap-list-filter.min.js"></script>
+		<script>var resourceID = <?php echo $_GET['id'] ?>;</script>
 		<script src="laajs/apihost.js"></script>
 		<script src="laajs/resource.js"></script>
 		<script src="laajs/resource_func.js"></script>
