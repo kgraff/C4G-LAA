@@ -142,5 +142,4 @@ function Resource(ID, categoryID, name, phone, address, city, state, zip, descri
 			}
 		});
 	};
-
 }

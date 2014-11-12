@@ -1,1 +1,1 @@
-var apiHost = "http://localhost/laaRest/";
+var apiHost = "../laa_webapp/";
