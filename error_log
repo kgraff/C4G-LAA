@@ -1,1 +1,9 @@
 [09-Nov-2014 19:16:46 America/Chicago] PHP Warning:  mysqli::mysqli(): (28000/1045): Access denied for user 'gt86'@'localhost' (using password: NO) in /home2/gt86/public_html/c4g/C4G-LAA/dbconnect.php on line 18
+[12-Nov-2014 10:05:47 America/Chicago] PHP Warning:  mysqli::mysqli(): (28000/1045): Access denied for user 'gt86'@'localhost' (using password: NO) in /home2/gt86/public_html/c4g/C4G-LAA/dbconnect.php on line 18
+[12-Nov-2014 13:48:33 America/Chicago] PHP Warning:  mysqli::mysqli(): (28000/1045): Access denied for user 'gt86'@'localhost' (using password: NO) in /home2/gt86/public_html/c4g/C4G-LAA/dbconnect.php on line 18
+[13-Nov-2014 11:15:21 America/Chicago] PHP Warning:  mysqli::mysqli(): (28000/1045): Access denied for user 'gt86'@'localhost' (using password: NO) in /home2/gt86/public_html/c4g/C4G-LAA/dbconnect.php on line 18
+[19-Nov-2014 04:49:29 America/Chicago] PHP Warning:  mysqli::mysqli(): (28000/1045): Access denied for user 'gt86'@'localhost' (using password: NO) in /home2/gt86/public_html/c4g/C4G-LAA/dbconnect.php on line 18
+[20-Nov-2014 23:01:29 America/Chicago] PHP Warning:  mysqli::mysqli(): (28000/1045): Access denied for user 'gt86'@'localhost' (using password: NO) in /home2/gt86/public_html/c4g/C4G-LAA/dbconnect.php on line 18
+[21-Nov-2014 06:58:37 America/Chicago] PHP Warning:  mysqli::mysqli(): (28000/1045): Access denied for user 'gt86'@'localhost' (using password: NO) in /home2/gt86/public_html/c4g/C4G-LAA/dbconnect.php on line 18
+[01-Dec-2014 08:54:18 America/Chicago] PHP Warning:  mysqli::mysqli(): (28000/1045): Access denied for user 'gt86'@'localhost' (using password: NO) in /home2/gt86/public_html/c4g/C4G-LAA/dbconnect.php on line 18
+[01-Dec-2014 08:54:29 America/Chicago] PHP Warning:  mysqli::mysqli(): (28000/1045): Access denied for user 'gt86'@'localhost' (using password: NO) in /home2/gt86/public_html/c4g/C4G-LAA/dbconnect.php on line 18
