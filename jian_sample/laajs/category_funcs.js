@@ -144,7 +144,7 @@ function createCategory() {
 			//notify success (or failure to insert) and redirect to dashboard
 			if(msg.return_code == 0){
 				alert(msg.message);
-				window.open("dashboard.html", "_self");
+				window.open("dashboard.php?id="+loginID, "_self");
 			}
 			else{
 				alert("Failed to create category. Please try again later.");
@@ -183,7 +183,7 @@ function editCategory() {
 			//notify success (or failure to update) and redirect to edit/remove category page
 			if(msg.return_code == 0){
 				alert(msg.message);
-				window.open("edit_category.html", "_self");
+				window.open("dashboard.php?id="+loginID, "_self");
 			}
 			else{
 				alert("Failed to update category. Please try again later.");
@@ -218,7 +218,7 @@ function deleteCategory() {
 		//notify success (or failure to delete) and redirect to edit/remove category page
 		if(msg.return_code == 0){
 			alert(msg.message);
-			window.open("edit_category.html", "_self");
+			window.open("dashboard.php?id="+loginID, "_self");
 		}
 		else{
 			alert("Failed to delete category. Please try again later.");

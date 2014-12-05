@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Add a Category</title>
+
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="style.css">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+	</head>
+	<body>
+	<script src="laajs/gotomain.js"></script>
+		<section id="login">
+			<div class="container">
+			
+				<div class="form-wrap">
+				<hr>
+		<button type="button" class="btn btn-block btn-success" onclick="gotoMain(<?php echo $_GET['id'] ?>)">Go to Main</button>
+		<hr>
+					<h1>Add a Category</h1>
+					<br>
+					<h5 id = "m1" style="color: red;">
+					</h5>
+					<form id="createCategoryForm" class="form-horizontal" onsubmit="event.preventDefault();createCategory();">
+						<div class="form-group">
+
+							<label for="category" class="col-sm-2 control-label">Parent Category:</label>
+							<div class="col-sm-10">
+								<input type="text" name="category" id="category" class="form-control" list="categoryList">
+								<datalist id="categoryList">
+								</datalist>
+							</div>
+
+							<hr>
+							<label for="name" class="col-sm-2 control-label required">Name:</label>
+							<div class="col-sm-10">
+								<input type="text" name="name" id="name" class="form-control" placeholder="required" required>
+							</div>
+
+							<hr>
+							<hr>
+							<label for="description" class="col-sm-2 control-label">Description:</label>
+							<div class="col-sm-10">
+								<textarea name="description" id="description" class="form-control">
+								</textarea>
+							</div>
+
+						</div>
+						<input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Add Category" >
+					</form>
+				</div>
+			</div>
+			<!-- /.container -->
+		</section>
+
+			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+			<!-- Include all compiled plugins (below), or include individual files as needed -->
+			<script src="js/bootstrap.min.js"></script>
+			<script src="laajs/bootstrap-list-filter.min.js"></script>
+			<script src="laajs/apihost.js"></script>
+			<script src="laajs/category.js"></script>
+			<script src="laajs/category_funcs.js"></script>
+			<script type="text/javascript">var loginID = <?php echo($_GET['id']) ?></script>
+	</body>
+</html>

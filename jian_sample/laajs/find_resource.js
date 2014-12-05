@@ -130,5 +130,5 @@ function populateResourceList(chosenCategory) {
 function viewResource(chosenResource){
 	// navigate to the view resource page
 	var resourceID = chosenResource.getAttribute("resourceID");
-	window.open("view_resource.php?id=" + resourceID, "_self");
+	window.open("view_resource.php?sid=" + resourceID+"&id="+loginID, "_self");
 }
